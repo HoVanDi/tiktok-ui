@@ -6,7 +6,8 @@
   --default-layout-header-height: 60px;
   --default-layout-width: 1150px;
   --black: #000;
-  --text-color: #333;
+  --text-color: #161823;
+  --default-layout-horizontal-spacer: 24px;
 }
 
 * {
@@ -34,6 +35,26 @@ input,
 }
 
 a[href] {
-  color: var(text-color);
+  color: var(--text-color);
   text-decoration: none;
+}
+
+// custom tippy styles
+
+body {
+  .tippy-box {
+    border-radius: 8px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 2.2rem;
+    background-color: rgba(84, 84, 84, 0.92);
+  }
+
+  .tippy-content {
+    padding: 8px 9px;
+  }
+
+  .tippy-arrow {
+    color: rgba(84, 84, 84, 0.92);
+  }
 }
