@@ -98,6 +98,18 @@
 
 //Action
 
+.container-btn {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(22, 24, 35, 0.12);
+  padding: 5px 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+}
+
 .actions {
   display: flex;
   align-items: center;
@@ -115,8 +127,14 @@
   font-size: 2.2rem;
   background-color: transparent;
   color: #161823;
-  padding: 4px 12px;
+  display: flex;
   cursor: pointer;
+  padding: 5px 12px;
+}
+
+.action-btn.icon {
+  padding: 0;
+  padding-right: 6px;
 }
 
 .user-avatar {

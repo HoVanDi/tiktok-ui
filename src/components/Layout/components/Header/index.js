@@ -13,7 +13,6 @@ import {
   faEarthAsia,
   faCircleQuestion,
   faKeyboard,
-  faCloudUpload,
   faUser,
   faCoins,
   faGear,
@@ -25,6 +24,8 @@ import images from "~/assets/images";
 import AccountItem from "~/components/AccountItem";
 import Button from "~/components/Button";
 import Menu from "~/components/Popper/Menu";
+import { Mailbox, Message, UploadIcon } from "~/components/Icons/insex";
+import Image from "~/components/Image";
 
 const cx = classNames.bind(styles);
 
@@ -135,8 +136,23 @@ function Header() {
           {currentUser ? (
             <>
               <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+                <div className={cx("container-btn")}>
+                  <button className={cx("action-btn", "icon")}>
+                    <UploadIcon />
+                  </button>
+                  <div>Tải lên</div>
+                </div>
+              </Tippy>
+
+              <Tippy delay={[0, 200]} content="Tin Nhắn" placement="bottom">
                 <button className={cx("action-btn")}>
-                  <FontAwesomeIcon icon={faCloudUpload} />
+                  <Message />
+                </button>
+              </Tippy>
+
+              <Tippy delay={[0, 200]} content="Hộp thư" placement="bottom">
+                <button className={cx("action-btn")}>
+                  <Mailbox />
                 </button>
               </Tippy>
             </>
@@ -153,7 +169,7 @@ function Header() {
             onChange={handleMenuChange}
           >
             {currentUser ? (
-              <img
+              <Image
                 className={cx("user-avatar")}
                 src="https://didongviet.vn/dchannel/wp-content/uploads/2022/01/cute-didongviet.jpg"
                 alt="error"
