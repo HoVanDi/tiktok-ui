@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AccountItem from "~/components/AccountItem";
 import classNames from "classnames/bind";
 import styles from "./Search.module.scss";
+import { useDebounce } from "~/hooks";
 
 const cx = classNames.bind(styles);
 
@@ -19,10 +20,12 @@ function Search() {
   const [showResult, setShowResult] = useState(true);
   const [loading, setLoading] = useState(false);
 
+  const debounce = useDebounce(Searchvalue, 500);
+
   const inputRef = useRef();
 
   useEffect(() => {
-    if (!Searchvalue.trim()) {
+    if (!debounce.trim()) {
       setSearchResults([])
       return;
     }
@@ -30,7 +33,7 @@ function Search() {
     setLoading(true);
     fetch(
       `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        Searchvalue
+        debounce
       )}&type=less` // encodeURIComponent nedd have when user search fucntion
     )
       .then((res) => res.json())
@@ -41,7 +44,7 @@ function Search() {
       .catch(() => {
         setLoading(false);
       });
-  }, [Searchvalue]);
+  }, [debounce]);
 
   const handleclear = () => {
     setSearchValue("");
