@@ -9,6 +9,7 @@ import { Wrapper as PopperWrapper } from "~/components/Popper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AccountItem from "~/components/AccountItem";
 import classNames from "classnames/bind";
+import * as searchService from "~/apiServices/searchServices";
 import styles from "./Search.module.scss";
 import { useDebounce } from "~/hooks";
 
@@ -20,31 +21,24 @@ function Search() {
   const [showResult, setShowResult] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  const debounce = useDebounce(Searchvalue, 500);
+  const debounced = useDebounce(Searchvalue, 500);
 
   const inputRef = useRef();
 
   useEffect(() => {
-    if (!debounce.trim()) {
-      setSearchResults([])
+    if (!debounced.trim()) {
+      setSearchResults([]);
       return;
     }
+    const fetchApi = async () => {
+      setLoading(true);
+      const results = await searchService.search(debounced);
+      setSearchResults(results);
+      setLoading(false);
+    };
 
-    setLoading(true);
-    fetch(
-      `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        debounce
-      )}&type=less` // encodeURIComponent nedd have when user search fucntion
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        setSearchResults(res.data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, [debounce]);
+    fetchApi()
+  }, [debounced]);
 
   const handleclear = () => {
     setSearchValue("");
