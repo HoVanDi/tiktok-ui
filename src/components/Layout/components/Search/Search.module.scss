@@ -49,6 +49,20 @@
   color: rgba(22, 24, 35, 0.34);
 }
 
+.loading {
+  animation: spinner 0.8s linear infinite; //1s: quaay het 1 vong, inner: quay deu, infinite: quay vo hanu
+}
+
+@keyframes spinner {
+  from {
+    transform: translateY(-50%) rotate(0);
+  }
+
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
 .search-title {
   color: rgba(22, 24, 35, 0.5);
   font-size: 1.4rem;

@@ -1,24 +1,31 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./AccountItem.module.scss";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import Image from "../Image";
 
 const cx = classNames.bind(styles);
 
-function AccountItem() {
+function AccountItem({ data }) {
   return (
-    <div className={cx("wrapper")}>
-      <Image className={cx("avata")} src="https://res.cloudinary.com/dsp0tuvsv/image/upload/v1693389958/SOCIAL/zktigctbpfr2dmxo33jj.jpg" alt="hoa"></Image>
+    <Link to={`/:${data.nickname}`} className={cx("wrapper")}>
+      <Image
+        className={cx("avata")}
+        src={data.avatar}
+        alt={data.full_name}
+      ></Image>
       <div className={cx("info")}>
         <h4 className={cx("name")}>
-            <span>Ho Van Di</span>
+          <span>{data.full_name}</span>
+          {data.tick && (
             <FontAwesomeIcon className={cx("check")} icon={faCheckCircle} />
+          )}
         </h4>
-        <span className={cx("username")}> hovandi</span>
+        <span className={cx("username")}> {data.nickname}</span>
       </div>
-    </div>
+    </Link>
   );
 }
 
