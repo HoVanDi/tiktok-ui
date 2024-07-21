@@ -37,7 +37,7 @@ function Search() {
       setLoading(false);
     };
 
-    fetchApi()
+    fetchApi();
   }, [debounced]);
 
   const handleclear = () => {
@@ -48,6 +48,15 @@ function Search() {
 
   const handleHideresult = () => {
     setShowResult(false);
+  };
+
+  const handleChange = (e) => {
+    console.log(e);
+    const searchValue = e.target.value;
+
+    if (!searchValue.startsWith(" ")) {
+      setSearchValue(searchValue);
+    }
   };
 
   return (
@@ -73,7 +82,7 @@ function Search() {
           value={Searchvalue}
           type="text"
           placeholder="Search accounts and videos"
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={handleChange}
           onFocus={() => setShowResult(true)}
         />
 
@@ -90,7 +99,10 @@ function Search() {
         )}
 
         <button className={cx("search-btn")}>
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            onMouseDown={(e) => e.preventDefault()}
+          />
         </button>
       </div>
     </HeadlessTippy>

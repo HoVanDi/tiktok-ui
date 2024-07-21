@@ -10,7 +10,7 @@
   cursor: pointer;
   background-color: var(--white);
   border: 1px solid transparent;
-  font-family: "IBM Plex Sans", san-serif;
+  font-family: var(--font-family);
   user-select: none;
 
   + .wrapper {

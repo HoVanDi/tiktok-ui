@@ -10,7 +10,12 @@ import Header from "./Header";
 const defaulFn = () => {};
 const cx = classNames.bind(styles);
 
-function Menu({ children, items = [], onChange = defaulFn }) {
+function Menu({
+  children,
+  items = [],
+  hideOnClick = false,
+  onChange = defaulFn,
+}) {
   const [history, setHistory] = useState([{ data: items }]);
   const current = history[history.length - 1];
 
@@ -35,6 +40,7 @@ function Menu({ children, items = [], onChange = defaulFn }) {
 
   return (
     <Tippy
+      hideOnClick={hideOnClick}
       interactive
       delay={[0, 700]}
       offset={[12, 8]}
