@@ -9,7 +9,7 @@ import { Wrapper as PopperWrapper } from "~/components/Popper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AccountItem from "~/components/AccountItem";
 import classNames from "classnames/bind";
-import * as searchService from "~/apiServices/searchServices";
+import * as searchService from "~/services/searchService";
 import styles from "./Search.module.scss";
 import { useDebounce } from "~/hooks";
 
