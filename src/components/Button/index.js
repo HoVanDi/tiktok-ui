@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import React from "react";
 import styles from "./Button.module.scss";
@@ -54,10 +55,14 @@ function Button({
   return (
     <Comp className={classes} {...props}>
       {leftIcon && <span className={cx("icon")}>{leftIcon}</span>}
-      <span className={cx('title')}>{children}</span>
+      <span className={cx("title")}>{children}</span>
       {RightIcon && <span className={cx("icon")}>{RightIcon}</span>}
     </Comp>
   );
 }
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default Button;
