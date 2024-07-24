@@ -22,7 +22,6 @@ function Search() {
   const [loading, setLoading] = useState(false);
 
   const debouncedValue = useDebounce(Searchvalue, 500);
-
   const inputRef = useRef();
 
   useEffect(() => {
